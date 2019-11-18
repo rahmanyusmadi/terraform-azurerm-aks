@@ -21,6 +21,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   dns_prefix          = "${var.prefix}aks"
+  kubernetes_version  = "1.15.5"
 
   agent_pool_profile {
     name            = "linuxpool"
