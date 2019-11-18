@@ -1,3 +1,7 @@
+provider "azurerm" {
+  version = "=1.36.0"
+}
+
 resource "azurerm_resource_group" "main" {
   name     = var.prefix
   location = var.location
