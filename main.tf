@@ -13,7 +13,7 @@ resource "random_password" "password" {
 }
 
 resource "tls_private_key" "pair" {
-  algorithm   = "RSA"
+  algorithm = "RSA"
 }
 
 resource "azurerm_kubernetes_cluster" "main" {
