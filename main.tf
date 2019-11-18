@@ -29,6 +29,13 @@ resource "azurerm_kubernetes_cluster" "main" {
     vm_size         = "Standard_D1_v2"
     os_type         = "Linux"
     os_disk_size_gb = 30
+
+    type                = "VirtualMachineScaleSets"
+    enable_auto_scaling = true
+
+    min_count = 1
+    max_count = 10
+    max_pods  = 100
   }
 
   linux_profile {
