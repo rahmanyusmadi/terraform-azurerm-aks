@@ -2,9 +2,8 @@ provider "azurerm" {
   version = "=1.36.0"
 }
 
-resource "azurerm_resource_group" "main" {
+data "azurerm_resource_group" "main" {
   name     = var.prefix
-  location = var.location
 }
 
 resource "azurerm_kubernetes_cluster" "main" {
