@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 data "azurerm_resource_group" "main" {
-  name     = var.prefix
+  name = var.prefix
 }
 
 resource "random_password" "password" {
@@ -22,7 +22,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   resource_group_name = data.azurerm_resource_group.main.name
   dns_prefix          = "${var.prefix}aks"
 
-  kubernetes_version  = var.kubernetes_version
+  kubernetes_version = var.kubernetes_version
 
   agent_pool_profile {
     name            = "default"
@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "main" {
       key_data = tls_private_key.pair.public_key_openssh
     }
   }
-  
+
   /*
   agent_pool_profile {
     name            = "windowspool"
