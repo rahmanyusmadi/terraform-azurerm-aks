@@ -40,7 +40,9 @@ resource "azurerm_kubernetes_cluster" "main" {
   
   linux_profile {
     admin_username = "${var.prefix}user"
-    ssh_key        = tls_private_key.pair.public_key_openssh
+    ssh_key {
+      key_data = tls_private_key.pair.public_key_openssh
+    }
   }
   
   windows_profile {
