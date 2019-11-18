@@ -8,8 +8,8 @@ data "azurerm_resource_group" "main" {
 
 resource "azurerm_kubernetes_cluster" "main" {
   name                = "${var.prefix}-aks"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
   dns_prefix          = "${var.prefix}aks"
 
   agent_pool_profile {
