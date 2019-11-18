@@ -21,22 +21,22 @@ resource "azurerm_kubernetes_cluster" "main" {
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   dns_prefix          = "${var.prefix}aks"
-  
+
   kubernetes_version  = var.kubernetes_version
 
   agent_pool_profile {
-    name            = "linuxpool"
+    name            = "default"
     count           = 1
-    vm_size         = "Standard_D1_v2"
+    vm_size         = var.vm_size
     os_type         = "Linux"
-    os_disk_size_gb = 30
+    os_disk_size_gb = var.os_disk_size_gb
 
     type                = "VirtualMachineScaleSets"
     enable_auto_scaling = true
 
-    min_count = 1
-    max_count = 10
-    max_pods  = 100
+    min_count = var.min_count
+    max_count = var.max_count
+    max_pods  = var.max_pods
   }
 
   linux_profile {
