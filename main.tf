@@ -6,6 +6,16 @@ data "azurerm_resource_group" "main" {
   name     = var.prefix
 }
 
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "_%@"
+}
+
+resource "tls_private_key" "pair" {
+  algorithm   = "RSA"
+}
+
 resource "azurerm_kubernetes_cluster" "main" {
   name                = "${var.prefix}-aks"
   location            = data.azurerm_resource_group.main.location
@@ -26,6 +36,16 @@ resource "azurerm_kubernetes_cluster" "main" {
     vm_size         = "Standard_D1_v2"
     os_type         = "Windows"
     os_disk_size_gb = 30
+  }
+  
+  linux_profile {
+    admin_username = "${var.prefix}user"
+    ssh_key        = tls_private_key.pair.public_key_openssh
+  }
+  
+  windows_profile {
+    admin_username = "${var.prefix}user"
+    admin_password = random_password.password.result
   }
 
   service_principal {
