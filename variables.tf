@@ -8,6 +8,11 @@ variable "prefix" {
   default     = "myaks"
 }
 
+variable "kubernetes_version" {
+  description = "Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade)."
+  default     = "1.15.5"
+}
+
 variable "address_space" {
   description = "The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
   default     = ["10.0.0.0/16"]
