@@ -30,6 +30,14 @@ resource "azurerm_kubernetes_cluster" "main" {
     os_disk_size_gb = 30
   }
 
+  linux_profile {
+    admin_username = "${var.prefix}user"
+    ssh_key {
+      key_data = tls_private_key.pair.public_key_openssh
+    }
+  }
+  
+  /*
   agent_pool_profile {
     name            = "windowspool"
     count           = 1
@@ -38,17 +46,11 @@ resource "azurerm_kubernetes_cluster" "main" {
     os_disk_size_gb = 30
   }
   
-  linux_profile {
-    admin_username = "${var.prefix}user"
-    ssh_key {
-      key_data = tls_private_key.pair.public_key_openssh
-    }
-  }
-  
   windows_profile {
     admin_username = "${var.prefix}user"
     admin_password = random_password.password.result
   }
+  */
 
   service_principal {
     client_id     = var.client_id
