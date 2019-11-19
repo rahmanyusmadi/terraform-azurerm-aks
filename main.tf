@@ -6,6 +6,24 @@ data "azurerm_resource_group" "main" {
   name = var.prefix
 }
 
+resource "azurerm_virtual_network" "main" {
+  name                = "${var.prefix}-vnet1"
+  address_space       = var.address_space
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+
+  tags = {
+    label = var.prefix
+  }
+}
+
+resource "azurerm_subnet" "main" {
+  name                 = "subnet1"
+  resource_group_name  = azurerm_resource_group.main.name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefix       = var.address_prefix
+}
+
 resource "random_password" "password" {
   length           = 16
   special          = true
@@ -28,6 +46,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     name            = "default"
     count           = 1
     vm_size         = var.vm_size
+    vnet_subnet_id  = azurerm_subnet.main.id
     os_type         = "Linux"
     os_disk_size_gb = var.os_disk_size_gb
 
