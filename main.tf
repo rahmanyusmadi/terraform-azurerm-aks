@@ -2,8 +2,6 @@ provider "azurerm" {
   version = "=1.36.0"
 }
 
-data "azurerm_client_config" "main" {}
-
 data "azurerm_resource_group" "main" {
   name = var.prefix
 }
@@ -61,7 +59,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   service_principal {
-    client_id     = data.azurerm_client_config.main.client_id
+    client_id     = var.client_id
     client_secret = var.client_secret
   }
 
