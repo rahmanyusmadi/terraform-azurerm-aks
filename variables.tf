@@ -40,8 +40,7 @@ variable "max_pods" {
 
 variable "address_space" {
   description = "The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
-  type        = list(string)
-  default     = ["10.0.0.0/16"]
+  default     = "10.0.0.0/16"
 }
 
 variable "address_prefix" {
