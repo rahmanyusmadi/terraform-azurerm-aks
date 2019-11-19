@@ -25,7 +25,7 @@ variable "admin_username" {
 
 variable "kubernetes_version" {
   description = "Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade)."
-  default     = "1.15.5"
+  default     = "1.14.8"
 }
 
 variable "vm_size" {
