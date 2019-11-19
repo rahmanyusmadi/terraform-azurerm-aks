@@ -46,19 +46,6 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
-  agent_pool_profile {
-    name            = "windowspool"
-    count           = 1
-    vm_size         = var.vm_size
-    os_type         = "Windows"
-    os_disk_size_gb = var.os_disk_size_gb
-  }
-  
-  windows_profile {
-    admin_username = "${var.prefix}user"
-    admin_password = random_password.password.result
-  }
-
   service_principal {
     client_id     = var.client_id
     client_secret = var.client_secret
