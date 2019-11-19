@@ -40,12 +40,12 @@ variable "max_pods" {
 
 variable "address_space" {
   description = "The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
-  default     = "10.0.0.0/16"
+  default     = "192.168.0.0/16"
 }
 
 variable "address_prefix" {
   description = "The address prefix to use for the subnet."
-  default     = "10.0.2.0/24"
+  default     = "192.168.2.0/24"
 }
 
 variable "my_public_ip_address" {
