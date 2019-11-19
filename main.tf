@@ -31,7 +31,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   name                = var.name
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
-  dns_prefix          = "${var.prefix}aks"
+  dns_prefix          = var.dns_prefix
 
   kubernetes_version = var.kubernetes_version
 
@@ -52,7 +52,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   linux_profile {
-    admin_username = "${var.prefix}user"
+    admin_username = var.admin_username
     ssh_key {
       key_data = tls_private_key.pair.public_key_openssh
     }

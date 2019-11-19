@@ -13,6 +13,16 @@ variable "name" {
   default     = "myaks"
 }
 
+variable "dns_prefix" {
+  description = "DNS prefix specified when creating the managed cluster. Changing this forces a new resource to be created."
+  default     = "globalunique"
+}
+
+variable "admin_username" {
+  description = "The Admin Username for the Cluster. Changing this forces a new resource to be created."
+  default     = "aksadmin"
+}
+
 variable "kubernetes_version" {
   description = "Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade)."
   default     = "1.15.5"
