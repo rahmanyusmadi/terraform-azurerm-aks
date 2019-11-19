@@ -66,6 +66,10 @@ resource "azurerm_kubernetes_cluster" "main" {
     client_secret = var.client_secret
   }
 
+  network_profile {
+    network_plugin = "azure"
+  }
+
   tags = {
     label = var.prefix
   }
