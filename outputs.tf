@@ -21,7 +21,7 @@ output "client_certificate" {
   sensitive   = true
 }
 
-variable "client_key" {
+output "client_key" {
   value       = azurerm_kubernetes_cluster.main.kube_config.0.client_key
   description = "Base64 encoded private key used by clients to authenticate to the Kubernetes cluster."
   sensitive   = true
