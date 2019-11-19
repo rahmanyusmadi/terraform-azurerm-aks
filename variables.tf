@@ -1,11 +1,13 @@
-variable "location" {
-  description = "The location where the resources should be created."
-  default     = "westus"
+variable "resource_group_name" {
+  description = "The name of the existing resource group. Must be unique on your Azure subscription."
 }
 
-variable "prefix" {
-  description = "Prefix to be used by resources and attributes."
-  default     = "myaks"
+variable "virtual_network_name" {
+  description = "The name of the existing virtual network. Changing this forces a new resource to be created."
+}
+
+variable "subnet_name" {
+  description = "The name of the existing subnet. Changing this forces a new resource to be created."
 }
 
 variable "name" {
@@ -14,13 +16,8 @@ variable "name" {
 }
 
 variable "dns_prefix" {
-  description = "DNS prefix specified when creating the managed cluster. Changing this forces a new resource to be created."
+  description = "DNS prefix specified when creating the managed cluster. Changing this forces a new resource to be created. The dns_prefix must contain between 3 and 45 characters, and can contain only letters, numbers, and hyphens. It must start with a letter and must end with a letter or a number."
   default     = "globalunique"
-}
-
-variable "admin_username" {
-  description = "The Admin Username for the Cluster. Changing this forces a new resource to be created."
-  default     = "aksadmin"
 }
 
 variable "kubernetes_version" {
@@ -53,27 +50,9 @@ variable "max_pods" {
   default     = 110
 }
 
-variable "vnet_name" {
-  description = "The name of the virtual network. Changing this forces a new resource to be created."
-}
-
-variable "address_space" {
-  description = "The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
-  default     = "192.168.0.0/16"
-}
-
-variable "subnet_name" {
-  description = "The name of the subnet. Changing this forces a new resource to be created."
-}
-
-variable "address_prefix" {
-  description = "The address prefix to use for the subnet."
-  default     = "192.168.2.0/24"
-}
-
-variable "my_public_ip_address" {
-  description = "Public IP address to allow remote access"
-  default     = "1.2.3.4"
+variable "admin_username" {
+  description = "The Admin Username for the Cluster. Changing this forces a new resource to be created."
+  default     = "aksadmin"
 }
 
 variable "client_id" {
@@ -82,4 +61,9 @@ variable "client_id" {
 
 variable "client_secret" {
   description = "The Client Secret for the Service Principal."
+}
+
+variable "tag_environment" {
+  description = "Environment name for tagging"
+  default     = "development"
 }

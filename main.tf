@@ -3,11 +3,11 @@ provider "azurerm" {
 }
 
 data "azurerm_resource_group" "main" {
-  name = var.prefix
+  name = var.resource_group_name
 }
 
 data "azurerm_virtual_network" "main" {
-  name                = var.vnet_name
+  name                = var.virtual_network_name
   resource_group_name = data.azurerm_resource_group.main.name
 }
 
@@ -68,6 +68,6 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   tags = {
-    label = var.prefix
+    environment = var.tag_environment
   }
 }
