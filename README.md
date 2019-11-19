@@ -1,5 +1,5 @@
 # Azure Kubernetes Module
-A Terraform module to create Azure managed Kubernetes cluster.
+A Terraform module to create Azure managed Kubernetes cluster in existing subnet.
 
 * single pool linux cluster with autoscaler
 

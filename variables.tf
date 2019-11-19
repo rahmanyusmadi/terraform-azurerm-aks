@@ -8,6 +8,11 @@ variable "prefix" {
   default     = "myaks"
 }
 
+variable "name" {
+  description = "The name of the Managed Kubernetes Cluster to create. Changing this forces a new resource to be created."
+  default     = "myaks"
+}
+
 variable "kubernetes_version" {
   description = "Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade)."
   default     = "1.15.5"
@@ -38,9 +43,17 @@ variable "max_pods" {
   default     = 110
 }
 
+variable "vnet_name" {
+  description = "The name of the virtual network. Changing this forces a new resource to be created."
+}
+
 variable "address_space" {
   description = "The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
   default     = "192.168.0.0/16"
+}
+
+variable "subnet_name" {
+  description = "The name of the subnet. Changing this forces a new resource to be created."
 }
 
 variable "address_prefix" {

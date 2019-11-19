@@ -7,12 +7,12 @@ data "azurerm_resource_group" "main" {
 }
 
 data "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-vnet1"
+  name                = var.vnet_name
   resource_group_name = data.azurerm_resource_group.main.name
 }
 
 data "azurerm_subnet" "main" {
-  name                 = "subnet1"
+  name                 = var.subnet_name
   resource_group_name  = data.azurerm_resource_group.main.name
   virtual_network_name = data.azurerm_virtual_network.main.name
 }
@@ -28,7 +28,7 @@ resource "tls_private_key" "pair" {
 }
 
 resource "azurerm_kubernetes_cluster" "main" {
-  name                = "${var.prefix}-aks"
+  name                = var.name
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   dns_prefix          = "${var.prefix}aks"
