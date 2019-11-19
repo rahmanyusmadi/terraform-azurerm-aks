@@ -12,6 +12,8 @@ module "kyochon" {
   virtual_network_name = "kyochon-vnet"
   subnet_name          = "subnet1"
   dns_prefix           = "kyochonaks"
+  client_id            = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  client_secret        = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
 
